@@ -1,0 +1,21 @@
+### Register a new user
+POST http://localhost:5000/signup
+Content-Type: application/json
+
+{
+  "username": "milou",
+  "email": "milou@mail.com",
+  "password": "1234"
+}
+
+### Login
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+  "credential": "milou@mail.com",
+  "password": "1234"
+}
+
+### Logout
+GET http://localhost:5000/logout

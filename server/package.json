@@ -1,0 +1,44 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with Fastify-CLI.",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tap \"test/**/*.test.js\"",
+    "start": "nodemon server.js",
+    "dev": "fastify start server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/session": "^6.4.0",
+    "axios": "^0.25.0",
+    "bcrypt": "^5.0.1",
+    "close-with-grace": "^1.1.0",
+    "dotenv": "^16.0.0",
+    "fastify": "^3.0.0",
+    "fastify-auth": "^1.1.0",
+    "fastify-autoload": "^3.10.0",
+    "fastify-cookie": "^5.5.0",
+    "fastify-cors": "^6.0.2",
+    "fastify-env": "^2.1.1",
+    "fastify-knexjs": "^1.4.0",
+    "fastify-plugin": "^3.0.0",
+    "fastify-sensible": "^3.1.2",
+    "mysql2": "^2.3.3",
+    "query-string": "^7.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "nodemon": "^2.0.15",
+    "pino-pretty": "^7.5.1",
+    "tap": "^15.1.6"
+  }
+}
