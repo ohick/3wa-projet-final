@@ -14,7 +14,7 @@ const axiosWrapper = async (axiosConfig) => {
     withCredentials: true,
   });
 
-  return response.data;
+  return response;
 };
 
 export default axiosWrapper;

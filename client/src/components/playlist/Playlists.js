@@ -30,7 +30,7 @@ function Playlists() {
         },
       });
 
-      setData(playlists);
+      setData(playlists.data);
     };
     fetchData();
   }, []);
@@ -42,7 +42,7 @@ function Playlists() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              {columns.map((col) => <TableCell>{col}</TableCell>)}
+              {columns.map((col) => <TableCell key={col}>{col}</TableCell>)}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -61,12 +61,12 @@ function Playlists() {
                   </IconButton>
                 </TableCell>
                 <TableCell>
-                  <IconButton aria-label="edit" color="warning">
+                  <IconButton aria-label="edit" color="warning" component={Link} to={`${location.pathname}/${row.id}/edit`}>
                     <EditIcon />
                   </IconButton>
                 </TableCell>
                 <TableCell>
-                  <IconButton aria-label="delete" color="danger">
+                  <IconButton aria-label="delete" color="danger" component={Link} to={`${location.pathname}/${row.id}/delete`}>
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>

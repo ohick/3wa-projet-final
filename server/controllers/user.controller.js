@@ -39,12 +39,12 @@ const logout = (request, reply) => {
   reply.send('ok');
 };
 
-const session = (request, reply) => {
+const session = async (request, reply) => {
   if (!request.session.userId) {
     reply.unauthorized('No session found');
   }
-
-  reply.code(204).send(request.session.userId);
+  const user = await User.findById(request, reply);
+  reply.send(user);
 };
 
 module.exports = {

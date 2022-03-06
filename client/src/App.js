@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container';
 
-import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Home from './components/Home';
@@ -14,60 +12,48 @@ import Playlists from './components/playlist/Playlists';
 import Playlist from './components/playlist/Playlist';
 import themeOptions from './themeOptions';
 import CreatePlaylist from './components/playlist/CreatePlaylist';
-import { useAuthState } from './context/auth';
-import axiosWrapper from './lib/axiosWrapper';
+import { useAuthState, validateSession, useAuthDispatch } from './context/auth';
+import WithoutNav from './components/WithoutNav';
+import WithNav from './components/WithNav';
 
 const theme = createTheme(themeOptions);
 
-function ForceLogin() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="lg">
-        <CssBaseline />
-        <Login />
-      </Container>
-    </ThemeProvider>
-  );
-}
-
 function App() {
   const authState = useAuthState();
-  const [isAuth, setIsAuth] = useState(false);
+  const dispatch = useAuthDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkSession = async () => {
-      const session = await axiosWrapper({
-        method: 'GET',
-        url: '/session',
-      });
-
-      setIsAuth(!!session);
+      const session = await validateSession(dispatch);
+      if (!session?.id) {
+        navigate('/login');
+      }
     };
 
-    if (!authState.username) {
+    if (!authState.id) {
       checkSession();
     }
-    setIsAuth(!!authState.username);
   }, [authState]);
 
-  return (isAuth ? (
+  return (
     <ThemeProvider theme={theme}>
-      <Navbar />
-      <Container component="main" maxWidth="lg">
-        <CssBaseline />
-        <Routes>
+      <CssBaseline />
+      <Routes>
+        <Route element={<WithoutNav />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+        <Route element={<WithNav />}>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/my-playlists" element={<Playlists />} />
           <Route exact path="/my-playlists/:id" element={<Playlist />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/create" element={<CreatePlaylist />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/genres" element={<Genres />} />
           <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Container>
+        </Route>
+      </Routes>
     </ThemeProvider>
-  ) : <ForceLogin />
   );
 }
 

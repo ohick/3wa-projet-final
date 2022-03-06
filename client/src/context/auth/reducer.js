@@ -1,5 +1,7 @@
 export const initialState = {
   username: null,
+  id: null,
+  role: null,
 };
 
 export const AuthReducer = (state, action) => {
@@ -13,19 +15,20 @@ export const AuthReducer = (state, action) => {
       return {
         ...state,
         username: action.payload.username,
+        id: action.payload.id,
+        role: action.payload.role,
+      };
+    case 'LOGIN_ERROR':
+      return {
+        ...state,
+        isAuth: false,
+        errorMessage: action.error,
       };
     case 'LOGOUT': return initialState;
     case 'REGISTER_SUCCESS':
       return {
         ...state,
         username: '',
-      };
-
-    case 'LOGIN_ERROR':
-      return {
-        ...state,
-        isAuth: false,
-        errorMessage: action.error,
       };
     default:
       throw new Error(`Unhandled action type: ${action.type}`);

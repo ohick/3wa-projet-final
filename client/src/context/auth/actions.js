@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const baseUrl = 'http://localhost:5000';
+import axiosWrapper from '../../lib/axiosWrapper';
 
 async function loginUser(dispatch, loginPayload) {
   try {
@@ -9,11 +7,10 @@ async function loginUser(dispatch, loginPayload) {
       return dispatch({ type: 'LOGIN_ERROR', error: 'Veuillez remplir tous les champs' });
     }
 
-    const response = await axios.post(`${baseUrl}/login`, loginPayload, {
-      validateStatus(status) {
-        return status < 500;
-      },
-      withCredentials: true,
+    const response = await axiosWrapper({
+      method: 'POST',
+      url: '/login',
+      data: loginPayload,
     });
 
     if (response.status === 200) {
@@ -29,7 +26,10 @@ async function loginUser(dispatch, loginPayload) {
 }
 
 async function logout(dispatch) {
-  await axios.get(`${baseUrl}/logout`);
+  await axiosWrapper({
+    method: 'GET',
+    url: '/logout',
+  });
   return dispatch({ type: 'LOGOUT' });
 }
 
@@ -42,11 +42,10 @@ async function registerUser(dispatch, registerPayload) {
       return dispatch({ type: 'LOGIN_ERROR', error: 'Mauvais mot de passe.' });
     }
 
-    const response = await axios.post(`${baseUrl}/register`, registerPayload, {
-      validateStatus(status) {
-        return status < 500;
-      },
-      withCredentials: true,
+    const response = await axiosWrapper({
+      method: 'POST',
+      url: '/register',
+      data: registerPayload,
     });
 
     if (response.status === 200) {
@@ -59,4 +58,19 @@ async function registerUser(dispatch, registerPayload) {
   return dispatch({ type: 'LOGIN_ERROR', error: 'euh' });
 }
 
-export { loginUser, logout, registerUser };
+async function validateSession(dispatch) {
+  const response = await axiosWrapper({
+    method: 'GET',
+    url: '/session',
+  });
+
+  if (response.status === 200) {
+    dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
+    return response.data;
+  }
+  return dispatch({ type: 'LOGOUT' });
+}
+
+export {
+  loginUser, logout, registerUser, validateSession,
+};
