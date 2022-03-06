@@ -9,9 +9,13 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
+import Genres from './components/playlist/Genres';
+import Playlists from './components/playlist/Playlists';
+import Playlist from './components/playlist/Playlist';
 import themeOptions from './themeOptions';
 import CreatePlaylist from './components/playlist/CreatePlaylist';
 import { useAuthState } from './context/auth';
+import axiosWrapper from './lib/axiosWrapper';
 
 const theme = createTheme(themeOptions);
 
@@ -31,6 +35,18 @@ function App() {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
+    const checkSession = async () => {
+      const session = await axiosWrapper({
+        method: 'GET',
+        url: '/session',
+      });
+
+      setIsAuth(!!session);
+    };
+
+    if (!authState.username) {
+      checkSession();
+    }
     setIsAuth(!!authState.username);
   }, [authState]);
 
@@ -41,9 +57,12 @@ function App() {
         <CssBaseline />
         <Routes>
           <Route exact path="/" element={<Home />} />
+          <Route exact path="/my-playlists" element={<Playlists />} />
+          <Route exact path="/my-playlists/:id" element={<Playlist />} />
           <Route path="/login" element={<Login />} />
           <Route path="/create" element={<CreatePlaylist />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/genres" element={<Genres />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>

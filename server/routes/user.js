@@ -1,7 +1,9 @@
-const { signUp, login, logout } = require('../controllers/user.controller');
+const {
+  signUp, login, logout, session,
+} = require('../controllers/user.controller');
 const { registerUserSchema, loginUserSchema } = require('../schemas/user.schemas');
 
-module.exports = async (fastify, options) => {
+module.exports = async (fastify, options, done) => {
   fastify.decorateRequest('db', fastify.knex);
   fastify.decorateRequest('secret', options.secret);
 
@@ -19,9 +21,14 @@ module.exports = async (fastify, options) => {
     handler: logout,
   };
 
+  const sessionOptions = {
+    handler: session,
+  };
+
   fastify.post('/login', loginOptions);
-
   fastify.post('/signup', signUpOptions);
-
   fastify.get('/logout', logoutOptions);
+  fastify.get('/session', sessionOptions);
+
+  done();
 };

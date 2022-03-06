@@ -7,6 +7,15 @@ const themeOptions = {
     secondary: {
       main: '#ff8f3f',
     },
+    blue: {
+      main: '#0063ba',
+    },
+    warning: {
+      main: '#ff8f3f',
+    },
+    danger: {
+      main: '#d41608',
+    },
   },
 };
 

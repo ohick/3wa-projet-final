@@ -20,12 +20,15 @@ const login = async (request, reply) => {
     reply.unauthorized('Wrong credentials');
   }
 
-  request.session.authenticated = true;
+  request.session.userId = user.id;
+
   reply.send(user);
 };
 
 const logout = (request, reply) => {
-  if (!request.session.authenticated) reply.code(204);
+  if (!request.session.userId) {
+    reply.code(204);
+  }
 
   request.destroySession((err) => {
     if (err) {
@@ -36,4 +39,14 @@ const logout = (request, reply) => {
   reply.send('ok');
 };
 
-module.exports = { signUp, login, logout };
+const session = (request, reply) => {
+  if (!request.session.userId) {
+    reply.unauthorized('No session found');
+  }
+
+  reply.code(204).send(request.session.userId);
+};
+
+module.exports = {
+  signUp, login, logout, session,
+};

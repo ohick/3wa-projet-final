@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const baseURL = 'https://api.spotify.com/v1';
 
-module.exports = async (req, reply) => {
+const generalSearch = async (req, reply) => {
   const allTypes = ['artist', 'album', 'track'];
   const type = req.query.includeFields ? req.query.includeFields.join(',') : allTypes.join(',');
 
@@ -18,3 +18,18 @@ module.exports = async (req, reply) => {
 
   reply.send(response.data);
 };
+
+const genreSearch = async (req, reply) => {
+  const response = await axios.get(
+    `${baseURL}/recommendations/available-genre-seeds`,
+    {
+      headers: {
+        Authorization: `Bearer ${req.token.access_token}`,
+      },
+    },
+  );
+
+  reply.send(response.data);
+};
+
+module.exports = { generalSearch, genreSearch };

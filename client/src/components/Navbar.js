@@ -13,8 +13,19 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['create'];
-const settings = [/* 'Profile', 'Account', 'Dashboard',  */'Logout'];
+const pages = [
+  {
+    label: 'New Playlist',
+    slug: 'create-playlist',
+  },
+  {
+    label: 'My Playlists',
+    slug: 'my-playlists',
+  }];
+const logout = {
+  label: 'Logout',
+  slug: 'logout',
+};
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -78,8 +89,8 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center"><Link to={page}>{page}</Link></Typography>
+                <MenuItem key={page.slug} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center"><Link to={page.slug}>{page.label}</Link></Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -95,13 +106,13 @@ function Navbar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.slug}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
-                to={page}
+                to={page.slug}
                 component={Link}
               >
-                {page}
+                {page.label}
               </Button>
             ))}
           </Box>
@@ -128,11 +139,10 @@ function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center"><Button to={setting} component={Link}>{setting}</Button></Typography>
-                </MenuItem>
-              ))}
+
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center"><Button to={logout.slug} component={Link}>{logout.label}</Button></Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

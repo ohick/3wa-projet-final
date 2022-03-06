@@ -13,6 +13,7 @@ async function loginUser(dispatch, loginPayload) {
       validateStatus(status) {
         return status < 500;
       },
+      withCredentials: true,
     });
 
     if (response.status === 200) {
@@ -45,6 +46,7 @@ async function registerUser(dispatch, registerPayload) {
       validateStatus(status) {
         return status < 500;
       },
+      withCredentials: true,
     });
 
     if (response.status === 200) {

@@ -2,25 +2,22 @@ module.exports = {
   env: {
     browser: true,
     commonjs: true,
-    es2021: true,
+    es2021: true
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-  ],
+  extends: ["plugin:react/recommended", "airbnb", "plugin:storybook/recommended"],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
-    ecmaVersion: 'latest',
+    ecmaVersion: 'latest'
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react'],
   rules: {
     'linebreak-style': 0,
     'react/jsx-props-no-spreading': 'off',
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-    'react/prop-types': 0,
-  },
+    'react/jsx-filename-extension': [1, {
+      extensions: ['.js', '.jsx']
+    }],
+    'react/prop-types': 0
+  }
 };
