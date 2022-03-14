@@ -47,7 +47,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/my-playlists" element={<Playlists />} />
           <Route exact path="/my-playlists/:id" element={<Playlist />} />
-          <Route path="/create" element={<CreatePlaylist />} />
+          <Route path="/create-playlist" element={<CreatePlaylist />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/genres" element={<Genres />} />
           <Route path="*" element={<NotFound />} />

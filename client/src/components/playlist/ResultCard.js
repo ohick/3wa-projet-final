@@ -6,28 +6,25 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-function ResultCard({ data }) {
-  const [image, setImage] = useState({});
+function ResultCard({ track }) {
+  /*   const [image, setImage] = useState({});
 
-  useEffect(() => {
-    const img = data.images.find((item) => item.height < 700);
-    setImage(img);
-  });
-
+    useEffect(() => {
+      const img = data.images.find((item) => item.height < 700);
+      setImage(img);
+    });
+   */
   return (
     <Card sx={{ maxWidth: 400 }} raised>
-      {image && (
-        <CardMedia
-          component="img"
-          height={image.height}
-          image={image.url}
-          alt={data.name}
-        />
-      )}
-
+      <CardMedia
+        component="img"
+        height="140"
+        image={track.album.images[1].url}
+        alt={track.album.name}
+      />
       <CardContent>
         <Typography variant="h5" component="div">
-          {data.name}
+          {track.name}
         </Typography>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {data.genres.join(', ')}

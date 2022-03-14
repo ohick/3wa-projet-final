@@ -1,24 +1,19 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import PropTypes from 'prop-types';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import FormControl from '@mui/material/FormControl';
-import CheckboxGroup from './CheckboxGroup';
 
-function Browse({ sendResults }) {
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
+function ConfirmPlaylist({ onSubmit }) {
   const { control, handleSubmit, setValue } = useForm({
     defaultValues: {
-      q: '',
-      includeFields: [],
+      name: '',
+      description: '',
     },
   });
-
-  const onSubmit = (data) => {
-    sendResults(data);
-  };
 
   return (
     <FormControl>
@@ -33,42 +28,46 @@ function Browse({ sendResults }) {
         <Typography component="h1" variant="h5">
           Create your playlist
         </Typography>
-
         <Controller
-          name="q"
+          name="name"
           control={control}
           render={({ field }) => (
             <TextField
               {...field}
               margin="normal"
-              id="q"
-              label="Search"
-              name="q"
+              id="name"
+              label="Enter a name"
+              name="name"
               fullWidth
             />
           )}
         />
-
-        <CheckboxGroup
+        <Controller
+          name="description"
           control={control}
-          setValue={setValue}
-          name="includeFields"
-          label="Limit search to :"
+          render={({ field }) => (
+            <TextField
+              {...field}
+              margin="normal"
+              id="description"
+              label="Enter a description"
+              name="description"
+              multiline
+              rows={2}
+              fullWidth
+            />
+          )}
         />
         <Button
           type="submit"
           variant="contained"
-          sx={{ m: 3 }}
+          sx={{ mt: 1 }}
         >
-          Search
+          Submit
         </Button>
       </Box>
     </FormControl>
   );
 }
 
-export default Browse;
-
-Browse.propTypes = {
-  sendResults: PropTypes.func.isRequired,
-};
+export default ConfirmPlaylist;

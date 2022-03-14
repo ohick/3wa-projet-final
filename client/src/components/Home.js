@@ -3,7 +3,7 @@ import React from 'react';
 function Home() {
   return (
 
-    <p>browse</p>
+    <p>Search</p>
 
   );
 }

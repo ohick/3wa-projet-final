@@ -1,0 +1,218 @@
+{
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/66nq4MFiMtrgit6VhNLlz5"
+  },
+  "followers": {
+    "href": null,
+    "total": 0
+  },
+  "images": [
+    {
+      "height": 640,
+      "url": "https://i.scdn.co/image/ab67616d0000b273c657af8d545b4dcf432ace76",
+      "width": 640
+    }
+  ],
+  "name": "test",
+  "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/66nq4MFiMtrgit6VhNLlz5/tracks?offset=0&limit=100&market=FR",
+    "items": [
+      {
+        "added_at": "2022-03-05T18:48:33Z",
+        "added_by": {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/fenouil6717"
+          },
+          "href": "https://api.spotify.com/v1/users/fenouil6717",
+          "id": "fenouil6717",
+          "type": "user",
+          "uri": "spotify:user:fenouil6717"
+        },
+        "is_local": false,
+        "primary_color": null,
+        "track": {
+          "album": {
+            "album_type": "album",
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/0oSGxfWSnnOXhD2fKuz2Gy"
+                },
+                "href": "https://api.spotify.com/v1/artists/0oSGxfWSnnOXhD2fKuz2Gy",
+                "id": "0oSGxfWSnnOXhD2fKuz2Gy",
+                "name": "David Bowie",
+                "type": "artist",
+                "uri": "spotify:artist:0oSGxfWSnnOXhD2fKuz2Gy"
+              }
+            ],
+            "external_urls": {
+              "spotify": "https://open.spotify.com/album/6fQElzBNTiEMGdIeY0hy5l"
+            },
+            "href": "https://api.spotify.com/v1/albums/6fQElzBNTiEMGdIeY0hy5l",
+            "id": "6fQElzBNTiEMGdIeY0hy5l",
+            "images": [
+              {
+                "height": 640,
+                "url": "https://i.scdn.co/image/ab67616d0000b273c657af8d545b4dcf432ace76",
+                "width": 640
+              },
+              {
+                "height": 300,
+                "url": "https://i.scdn.co/image/ab67616d00001e02c657af8d545b4dcf432ace76",
+                "width": 300
+              },
+              {
+                "height": 64,
+                "url": "https://i.scdn.co/image/ab67616d00004851c657af8d545b4dcf432ace76",
+                "width": 64
+              }
+            ],
+            "name": "Hunky Dory (2015 Remaster)",
+            "release_date": "1971-12-17",
+            "release_date_precision": "day",
+            "total_tracks": 11,
+            "type": "album",
+            "uri": "spotify:album:6fQElzBNTiEMGdIeY0hy5l"
+          },
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0oSGxfWSnnOXhD2fKuz2Gy"
+              },
+              "href": "https://api.spotify.com/v1/artists/0oSGxfWSnnOXhD2fKuz2Gy",
+              "id": "0oSGxfWSnnOXhD2fKuz2Gy",
+              "name": "David Bowie",
+              "type": "artist",
+              "uri": "spotify:artist:0oSGxfWSnnOXhD2fKuz2Gy"
+            }
+          ],
+          "disc_number": 1,
+          "duration_ms": 235986,
+          "episode": false,
+          "explicit": false,
+          "external_ids": {
+            "isrc": "USJT11500131"
+          },
+          "external_urls": {
+            "spotify": "https://open.spotify.com/track/3ZE3wv8V3w2T2f7nOCjV0N"
+          },
+          "href": "https://api.spotify.com/v1/tracks/3ZE3wv8V3w2T2f7nOCjV0N",
+          "id": "3ZE3wv8V3w2T2f7nOCjV0N",
+          "is_local": false,
+          "is_playable": true,
+          "name": "Life on Mars? - 2015 Remaster",
+          "popularity": 75,
+          "preview_url": "https://p.scdn.co/mp3-preview/8ec3a4b322c0df167ad409a668ceaa704fcbd1c0?cid=425d6970c18848a1ab24e91120b26b25",
+          "track": true,
+          "track_number": 4,
+          "type": "track",
+          "uri": "spotify:track:3ZE3wv8V3w2T2f7nOCjV0N"
+        },
+        "video_thumbnail": {
+          "url": null
+        }
+      },
+      {
+        "added_at": "2022-03-05T18:48:44Z",
+        "added_by": {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/fenouil6717"
+          },
+          "href": "https://api.spotify.com/v1/users/fenouil6717",
+          "id": "fenouil6717",
+          "type": "user",
+          "uri": "spotify:user:fenouil6717"
+        },
+        "is_local": false,
+        "primary_color": null,
+        "track": {
+          "album": {
+            "album_type": "album",
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/0k17h0D3J5VfsdmQ1iZtE9"
+                },
+                "href": "https://api.spotify.com/v1/artists/0k17h0D3J5VfsdmQ1iZtE9",
+                "id": "0k17h0D3J5VfsdmQ1iZtE9",
+                "name": "Pink Floyd",
+                "type": "artist",
+                "uri": "spotify:artist:0k17h0D3J5VfsdmQ1iZtE9"
+              }
+            ],
+            "external_urls": {
+              "spotify": "https://open.spotify.com/album/2WT1pbYjLJciAR26yMebkH"
+            },
+            "href": "https://api.spotify.com/v1/albums/2WT1pbYjLJciAR26yMebkH",
+            "id": "2WT1pbYjLJciAR26yMebkH",
+            "images": [
+              {
+                "height": 640,
+                "url": "https://i.scdn.co/image/ab67616d0000b2734ada80e2e0d11d8f6a99d42e",
+                "width": 640
+              },
+              {
+                "height": 300,
+                "url": "https://i.scdn.co/image/ab67616d00001e024ada80e2e0d11d8f6a99d42e",
+                "width": 300
+              },
+              {
+                "height": 64,
+                "url": "https://i.scdn.co/image/ab67616d000048514ada80e2e0d11d8f6a99d42e",
+                "width": 64
+              }
+            ],
+            "name": "The Dark Side Of The Moon (2011 Remastered Version)",
+            "release_date": "1973-03-01",
+            "release_date_precision": "day",
+            "total_tracks": 10,
+            "type": "album",
+            "uri": "spotify:album:2WT1pbYjLJciAR26yMebkH"
+          },
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0k17h0D3J5VfsdmQ1iZtE9"
+              },
+              "href": "https://api.spotify.com/v1/artists/0k17h0D3J5VfsdmQ1iZtE9",
+              "id": "0k17h0D3J5VfsdmQ1iZtE9",
+              "name": "Pink Floyd",
+              "type": "artist",
+              "uri": "spotify:artist:0k17h0D3J5VfsdmQ1iZtE9"
+            }
+          ],
+          "disc_number": 1,
+          "duration_ms": 422853,
+          "episode": false,
+          "explicit": false,
+          "external_ids": {
+            "isrc": "GBN9Y1100079"
+          },
+          "external_urls": {
+            "spotify": "https://open.spotify.com/track/4xHWH1jwV5j4mBYRhxPbwZ"
+          },
+          "href": "https://api.spotify.com/v1/tracks/4xHWH1jwV5j4mBYRhxPbwZ",
+          "id": "4xHWH1jwV5j4mBYRhxPbwZ",
+          "is_local": false,
+          "is_playable": true,
+          "name": "Time - 2011 Remastered Version",
+          "popularity": 68,
+          "preview_url": "https://p.scdn.co/mp3-preview/6e9f412b075dcee59f47d3ebd1742ca52ee25e46?cid=425d6970c18848a1ab24e91120b26b25",
+          "track": true,
+          "track_number": 4,
+          "type": "track",
+          "uri": "spotify:track:4xHWH1jwV5j4mBYRhxPbwZ"
+        },
+        "video_thumbnail": {
+          "url": null
+        }
+      }
+    ],
+    "limit": 100,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total": 2
+  },
+  "uri": "spotify:playlist:66nq4MFiMtrgit6VhNLlz5"
+}

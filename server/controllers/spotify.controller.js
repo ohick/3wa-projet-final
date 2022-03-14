@@ -1,8 +1,15 @@
 const { generalSearch, genreSearch } = require('./spotify/spotifySearch');
-const spotifyAuth = require('./spotify/spotifyAuth');
+const { getToken, getAccess } = require('./spotify/spotifyAuth');
 const getArtist = require('./spotify/getArtist');
-const getPlaylists = require('./spotify/getPlaylists');
+const { getPlaylists, getPlaylistById, addPlaylist } = require('./spotify/getPlaylists');
 
 module.exports = {
-  spotifyAuth, generalSearch, genreSearch, getArtist, getPlaylists,
+  getToken,
+  getAccess,
+  generalSearch,
+  genreSearch,
+  getArtist,
+  getPlaylists,
+  getPlaylistById,
+  addPlaylist,
 };

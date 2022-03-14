@@ -11,10 +11,11 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import Tooltip from '@mui/material/Tooltip';
 
 import axiosWrapper from '../../lib/axiosWrapper';
 
-const columns = ['Name', 'Description', 'View', 'Edit', 'Delete'];
+const columns = ['Name', 'View', 'Edit', 'Delete'];
 
 function Playlists() {
   const [data, setData] = useState([]);
@@ -36,46 +37,48 @@ function Playlists() {
   }, []);
 
   return data.length ? (
-    <>
-      <p>{JSON.stringify(data)}</p>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              {columns.map((col) => <TableCell key={col}>{col}</TableCell>)}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((row) => (
-              <TableRow
-                key={row.spotify_id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell>{row.description}</TableCell>
-                <TableCell>
+    <TableContainer component={Paper} sx={{ m: 4 }}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            {columns.map((col) => <TableCell key={col}>{col}</TableCell>)}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((row) => (
+            <TableRow
+              key={row.spotify_id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell>
+                <Tooltip title="View">
                   <IconButton aria-label="view" color="blue" component={Link} to={`${location.pathname}/${row.id}`}>
                     <VisibilityIcon />
                   </IconButton>
-                </TableCell>
-                <TableCell>
+                </Tooltip>
+              </TableCell>
+              <TableCell>
+                <Tooltip title="Edit">
                   <IconButton aria-label="edit" color="warning" component={Link} to={`${location.pathname}/${row.id}/edit`}>
                     <EditIcon />
                   </IconButton>
-                </TableCell>
-                <TableCell>
+                </Tooltip>
+              </TableCell>
+              <TableCell>
+                <Tooltip title="Delete">
                   <IconButton aria-label="delete" color="danger" component={Link} to={`${location.pathname}/${row.id}/delete`}>
                     <DeleteIcon />
                   </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
+                </Tooltip>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   ) : <p>chargement...</p>;
 }
 

@@ -30,6 +30,7 @@ const appService = require('./app');
 
 const config = {
   spotifyClientId: process.env.SPOTIFY_CLIENT_ID,
+  spotifyUserId: process.env.SPOTIFY_USER_ID,
   spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET,
   redirectUri: process.env.REDIRECT_URI,
   secret: process.env.SECRET,
