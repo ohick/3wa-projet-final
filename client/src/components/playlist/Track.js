@@ -10,11 +10,11 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 
 function Track({ item, add = false, addTrack }) {
-  const { track } = item;
+  const track = item.track || item;
 
   const handleClick = (data) => {
     addTrack({
-      uri: data.uri,
+      id: data.id,
       name: data.name,
       artist: {
         name: data.artists[0].name, id: data.artists[0].id,

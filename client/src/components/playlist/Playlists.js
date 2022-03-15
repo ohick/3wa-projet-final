@@ -14,12 +14,14 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import Tooltip from '@mui/material/Tooltip';
 
 import axiosWrapper from '../../lib/axiosWrapper';
+import { useAuthState } from '../../context/auth';
 
 const columns = ['Name', 'View', 'Edit', 'Delete'];
 
 function Playlists() {
   const [data, setData] = useState([]);
   const location = useLocation();
+  const authState = useAuthState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +29,7 @@ function Playlists() {
         method: 'GET',
         url: '/playlists',
         params: {
-          id: 1,
+          id: authState.id,
         },
       });
 
@@ -47,7 +49,7 @@ function Playlists() {
         <TableBody>
           {data.map((row) => (
             <TableRow
-              key={row.spotify_id}
+              key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">

@@ -1,6 +1,5 @@
 const {
   getToken,
-  getAccess,
   generalSearch,
   genreSearch,
   getPlaylists,

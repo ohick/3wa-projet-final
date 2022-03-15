@@ -35,18 +35,13 @@ function CreatePlaylist() {
   };
 
   const handleSubmit = async (playlist) => {
-    console.log({
-      name: playlist.name,
-      description: playlist.name,
-      tracks: selection.map((track) => track.uri),
-    });
     await axiosWrapper({
       method: 'POST',
       url: '/addPlaylist',
       data: {
         name: playlist.name,
-        description: playlist.name,
-        tracks: selection.map((track) => track.uri),
+        description: playlist.description,
+        tracks: selection.map((track) => track.id),
       },
     });
     return navigate('/my-playlists');
@@ -57,8 +52,8 @@ function CreatePlaylist() {
     setSelection(newSelection);
   };
 
-  const removeTrack = (uri) => {
-    const newSelection = selection.filter((track) => track.uri !== uri);
+  const removeTrack = (id) => {
+    const newSelection = selection.filter((track) => track.id !== id);
     setSelection(newSelection);
   };
 
@@ -82,9 +77,9 @@ function CreatePlaylist() {
               <List dense={false}>
                 {selection.map((track) => (
                   <ListItem
-                    key={track.uri}
+                    key={track.id}
                     secondaryAction={(
-                      <IconButton edge="end" aria-label="delete" onClick={() => removeTrack(track.uri)}>
+                      <IconButton edge="end" aria-label="delete" onClick={() => removeTrack(track.id)}>
                         <DeleteIcon />
                       </IconButton>
                     )}

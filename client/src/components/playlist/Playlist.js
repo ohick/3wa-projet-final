@@ -17,6 +17,7 @@ function Playlist() {
         method: 'GET',
         url: `/playlist/${id}`,
       });
+
       setData(playlist.data);
     };
     fetchData();
@@ -25,20 +26,16 @@ function Playlist() {
   return Object.keys(data).length ? (
     <>
       <Typography variant="h1" component="div">
-        {data.name}
+        {data.playlist.name}
       </Typography>
-      <Link variant="subtitle1" href={data.external_urls.spotify}>
-        Ouvrir sur Spotify
-      </Link>
-      <Typography variant="subtitle2" component="div">
-        Followers: &nbsp;
-        {data.followers.total}
+      <Typography variant="subtitle1" component="div">
+        {data.playlist.description}
       </Typography>
       <Grid sx={{ flexGrow: 1, my: 3 }} container spacing={2}>
         <Grid item xs={12}>
           <Grid container spacing={4}>
-            {data.tracks.items.map((track) => (
-              <Grid key={track.track.id} item>
+            {data.tracks.map((track) => (
+              <Grid key={track.id} item>
                 <Track item={track} />
               </Grid>
             ))}
