@@ -3,15 +3,14 @@ import { useForm, Controller } from 'react-hook-form';
 
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-function ConfirmPlaylist({ onSubmit }) {
-  const { control, handleSubmit, setValue } = useForm({
+function ConfirmPlaylist({ onSubmit, content = null }) {
+  const { control, handleSubmit } = useForm({
     defaultValues: {
-      name: '',
-      description: '',
+      name: content?.playlist.name || '',
+      description: content?.playlist.description || '',
     },
   });
 
@@ -25,10 +24,8 @@ function ConfirmPlaylist({ onSubmit }) {
           mt: 1, marginTop: 8, boxShadow: 2, padding: 2, borderRadius: 1,
         }}
       >
-        <Typography component="h1" variant="h5">
-          Create your playlist
-        </Typography>
         <Controller
+          rules={{ required: true }}
           name="name"
           control={control}
           render={({ field }) => (
@@ -43,6 +40,7 @@ function ConfirmPlaylist({ onSubmit }) {
           )}
         />
         <Controller
+          rules={{ required: true }}
           name="description"
           control={control}
           render={({ field }) => (

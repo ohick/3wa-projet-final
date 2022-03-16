@@ -5,33 +5,54 @@ const {
   getPlaylists,
   getPlaylistById,
   addPlaylist,
+  updatePlaylist,
+  deletePlaylist,
 } = require('../controllers/spotify.controller');
 
+const {
+  spotifySearchSchema,
+  getPlaylistByIdSchema,
+  getPlaylistsSchema,
+  addPlaylistSchema,
+  updatePlaylistSchema,
+  deletePlaylistSchema,
+} = require('../schemas/playlist.schemas');
+
 const spotifySearchOpts = {
-  schema: {},
+  schema: spotifySearchSchema,
+  prehandler: getToken,
   handler: generalSearch,
 };
 
 const genresSearchOpts = {
-  schema: {},
   handler: genreSearch,
 };
 
 const getPlaylistsOpts = {
-  schema: {},
+  schema: getPlaylistsSchema,
   handler: getPlaylists,
 };
 
 const getPlaylistByIdOpts = {
-  schema: {},
+  schema: getPlaylistByIdSchema,
   prehandler: getToken,
   handler: getPlaylistById,
 };
 
 const addPlaylistOpts = {
-  schema: {},
+  schema: addPlaylistSchema,
   prehandler: getToken,
   handler: addPlaylist,
+};
+
+const updatePlaylistOpts = {
+  schema: updatePlaylistSchema,
+  handler: updatePlaylist,
+};
+
+const deletePlaylistOpts = {
+  schema: deletePlaylistSchema,
+  handler: deletePlaylist,
 };
 
 module.exports = async (fastify, options, done) => {
@@ -48,7 +69,8 @@ module.exports = async (fastify, options, done) => {
   fastify.get('/getGenres', genresSearchOpts);
   fastify.get('/playlists', getPlaylistsOpts);
   fastify.get('/playlist/:id', getPlaylistByIdOpts);
-
+  fastify.put('/playlist/:id', updatePlaylistOpts);
+  fastify.delete('/playlist/:id', deletePlaylistOpts);
   fastify.post('/addPlaylist', addPlaylistOpts);
 
   done();

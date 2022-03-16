@@ -15,7 +15,7 @@ const generalSearch = async (req, reply) => {
     },
   );
 
-  reply.send(response.data);
+  return reply.send(response.data);
 };
 
 const genreSearch = async (req, reply) => {
@@ -28,7 +28,7 @@ const genreSearch = async (req, reply) => {
     },
   );
 
-  reply.send(response.data);
+  return reply.send(response.data);
 };
 
 module.exports = { generalSearch, genreSearch };

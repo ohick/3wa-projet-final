@@ -1,29 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link as RouterLink } from 'react-router-dom';
+import { useParams, Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import axiosWrapper from '../../lib/axiosWrapper';
 import Track from './Track';
+
+import { useAuthState } from '../../context/auth';
+import { useSpotifyState, useSpotifyDispatch, getPlaylistById } from '../../context/spotify';
 
 function Playlist() {
   const [data, setData] = useState({});
+  const authState = useAuthState();
+  const dispatch = useSpotifyDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
+  const spotifyState = useSpotifyState();
 
   useEffect(() => {
+    if (!authState.id) return navigate('/login');
     const fetchData = async () => {
-      const playlist = await axiosWrapper({
-        method: 'GET',
-        url: `/playlist/${id}`,
-      });
-
-      setData(playlist.data);
+      await getPlaylistById(dispatch, id);
     };
-    fetchData();
+    return fetchData();
   }, []);
 
-  return Object.keys(data).length ? (
+  useEffect(() => {
+    const playlist = spotifyState.find((p) => p.playlist.id === id.toString());
+    if (playlist?.tracks) {
+      setData(playlist);
+    }
+  }, [spotifyState]);
+
+  return authState.id && (Object.keys(data).length ? (
     <>
       <Typography variant="h1" component="div">
         {data.playlist.name}
@@ -44,7 +53,7 @@ function Playlist() {
       </Grid>
       <Link component={RouterLink} to="/my-playlists">Retour à la liste</Link>
     </>
-  ) : <p>chargement</p>;
+  ) : <p>chargement</p>);
 }
 
 export default Playlist;

@@ -25,11 +25,11 @@ function Login() {
     const user = await loginUser(dispatch, data);
 
     if (user) {
-      return navigate('/');
+      return navigate('/my-playlists');
     }
 
     reset();
-    return setError({ display: true, message: 'yadada' });
+    return setError({ display: true, message: 'Une erreur est survenue, veuillez réessayer' });
   };
 
   return (
@@ -51,11 +51,11 @@ function Login() {
           <Controller
             name="credential"
             control={control}
+            rules={{ required: true }}
             render={({ field }) => (
               <TextField
                 {...field}
                 margin="normal"
-                required
                 fullWidth
                 id="credential"
                 label="Email Address"
@@ -68,11 +68,11 @@ function Login() {
           <Controller
             name="password"
             control={control}
+            rules={{ required: true }}
             render={({ field }) => (
               <TextField
                 {...field}
                 margin="normal"
-                required
                 fullWidth
                 name="password"
                 label="Password"

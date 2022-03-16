@@ -19,3 +19,27 @@ Content-Type: application/json
 
 ### Logout
 GET http://localhost:5000/logout
+
+### Update playlist
+PUT http://localhost:5000/playlist/18
+Content-Type: application/json
+
+{
+  "id": "18",
+  "name": "hello and gb",
+  "description": " hello gdbye",
+  "tracks": [
+    {
+      "trackId": 50,
+      "spotify_id": "1Yk0cQdMLx5RzzFTYwmuld"
+    },
+    {
+      "trackId": 51,
+      "spotify_id": "2s5Kg7XPzPfMMHRS4zndUV"
+    },
+    {
+      "trackId": 52,
+      "spotify_id": "28LzmRnsiidhiBBUvdi6Aj"
+    }
+  ]
+}

@@ -6,10 +6,9 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
-import CheckboxGroup from './CheckboxGroup';
 
 function Search({ sendResults }) {
-  const { control, handleSubmit, setValue } = useForm({
+  const { control, handleSubmit } = useForm({
     defaultValues: {
       q: '',
     },
@@ -34,6 +33,7 @@ function Search({ sendResults }) {
         </Typography>
 
         <Controller
+          rules={{ required: true }}
           name="q"
           control={control}
           render={({ field }) => (
@@ -47,13 +47,6 @@ function Search({ sendResults }) {
             />
           )}
         />
-
-        {/* <CheckboxGroup
-          control={control}
-          setValue={setValue}
-          name="includeFields"
-          label="Limit search to :"
-        /> */}
         <Button
           type="submit"
           variant="contained"

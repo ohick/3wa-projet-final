@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -13,32 +13,28 @@ import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Tooltip from '@mui/material/Tooltip';
 
-import axiosWrapper from '../../lib/axiosWrapper';
 import { useAuthState } from '../../context/auth';
+import { useSpotifyState, useSpotifyDispatch, getPlaylists } from '../../context/spotify';
 
 const columns = ['Name', 'View', 'Edit', 'Delete'];
 
 function Playlists() {
-  const [data, setData] = useState([]);
+  const navigate = useNavigate();
   const location = useLocation();
   const authState = useAuthState();
+  const spotifyState = useSpotifyState();
+  const dispatch = useSpotifyDispatch();
 
   useEffect(() => {
+    if (!authState.id) return navigate('/login');
     const fetchData = async () => {
-      const playlists = await axiosWrapper({
-        method: 'GET',
-        url: '/playlists',
-        params: {
-          id: authState.id,
-        },
-      });
-
-      setData(playlists.data);
+      await getPlaylists(dispatch, authState.id);
     };
-    fetchData();
-  }, []);
 
-  return data.length ? (
+    return fetchData();
+  }, [authState]);
+
+  return spotifyState.length ? (
     <TableContainer component={Paper} sx={{ m: 4 }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -47,31 +43,31 @@ function Playlists() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row) => (
+          {spotifyState.map((row) => (
             <TableRow
-              key={row.id}
+              key={row.playlist.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.playlist.name}
               </TableCell>
               <TableCell>
                 <Tooltip title="View">
-                  <IconButton aria-label="view" color="blue" component={Link} to={`${location.pathname}/${row.id}`}>
+                  <IconButton aria-label="view" color="blue" component={Link} to={`${location.pathname}/${row.playlist.id}`}>
                     <VisibilityIcon />
                   </IconButton>
                 </Tooltip>
               </TableCell>
               <TableCell>
                 <Tooltip title="Edit">
-                  <IconButton aria-label="edit" color="warning" component={Link} to={`${location.pathname}/${row.id}/edit`}>
+                  <IconButton aria-label="edit" color="warning" component={Link} to={`${location.pathname}/${row.playlist.id}/edit`}>
                     <EditIcon />
                   </IconButton>
                 </Tooltip>
               </TableCell>
               <TableCell>
                 <Tooltip title="Delete">
-                  <IconButton aria-label="delete" color="danger" component={Link} to={`${location.pathname}/${row.id}/delete`}>
+                  <IconButton aria-label="delete" color="danger" component={Link} to={`${location.pathname}/${row.playlist.id}/delete`}>
                     <DeleteIcon />
                   </IconButton>
                 </Tooltip>

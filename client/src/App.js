@@ -15,6 +15,8 @@ import CreatePlaylist from './components/playlist/CreatePlaylist';
 import { useAuthState, validateSession, useAuthDispatch } from './context/auth';
 import WithoutNav from './components/WithoutNav';
 import WithNav from './components/WithNav';
+import EditPlaylist from './components/playlist/EditPlaylist';
+import DeletePlaylist from './components/playlist/DeletePlaylist';
 
 const theme = createTheme(themeOptions);
 
@@ -47,6 +49,8 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/my-playlists" element={<Playlists />} />
           <Route exact path="/my-playlists/:id" element={<Playlist />} />
+          <Route exact path="/my-playlists/:id/edit" element={<EditPlaylist />} />
+          <Route exact path="/my-playlists/:id/delete" element={<DeletePlaylist />} />
           <Route path="/create-playlist" element={<CreatePlaylist />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/genres" element={<Genres />} />
@@ -58,3 +62,4 @@ function App() {
 }
 
 export default App;
+//

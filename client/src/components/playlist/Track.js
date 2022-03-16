@@ -14,13 +14,15 @@ function Track({ item, add = false, addTrack }) {
 
   const handleClick = (data) => {
     addTrack({
-      id: data.id,
-      name: data.name,
-      artist: {
-        name: data.artists[0].name, id: data.artists[0].id,
-      },
-      album: {
-        name: data.album.name, id: data.album.id,
+      track: {
+        id: data.id,
+        name: data.name,
+        artist: {
+          name: data.artists[0].name, id: data.artists[0].id,
+        },
+        album: {
+          name: data.album.name, id: data.album.id,
+        },
       },
     });
   };
