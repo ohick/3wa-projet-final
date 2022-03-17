@@ -5,9 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import Login from './components/Login';
 import Logout from './components/Logout';
-import Home from './components/Home';
 import NotFound from './components/NotFound';
-import Genres from './components/playlist/Genres';
 import Playlists from './components/playlist/Playlists';
 import Playlist from './components/playlist/Playlist';
 import themeOptions from './themeOptions';
@@ -36,7 +34,7 @@ function App() {
     if (!authState.id) {
       checkSession();
     }
-  }, [authState]);
+  }, [authState, dispatch, navigate]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -46,14 +44,12 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Route>
         <Route element={<WithNav />}>
-          <Route exact path="/" element={<Home />} />
           <Route exact path="/my-playlists" element={<Playlists />} />
           <Route exact path="/my-playlists/:id" element={<Playlist />} />
           <Route exact path="/my-playlists/:id/edit" element={<EditPlaylist />} />
           <Route exact path="/my-playlists/:id/delete" element={<DeletePlaylist />} />
           <Route path="/create-playlist" element={<CreatePlaylist />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/genres" element={<Genres />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

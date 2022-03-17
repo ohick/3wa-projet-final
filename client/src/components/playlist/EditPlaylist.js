@@ -22,7 +22,7 @@ function EditPlaylist() {
     if (playlist?.tracks) {
       setData(playlist);
     }
-  }, [spotifyState]);
+  }, [spotifyState, id]);
 
   useEffect(() => {
     if (!authState.id) return navigate('/login');
@@ -30,7 +30,7 @@ function EditPlaylist() {
       await getPlaylistById(dispatch, id);
     };
     return fetchData();
-  }, []);
+  }, [authState.id, id, dispatch, navigate]);
 
   const onSubmit = async (formData) => {
     const payload = {

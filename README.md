@@ -8,5 +8,10 @@ Ce projet présente une application de gestion de playlist, basée sur l'API du 
 $ git clone git@github.com:ohick/3wa-projet-final.git
 $ cd 3wa-projet-final
 $ npm install
+```
+
+Créer un fichier .env sur base du fichier sample.env.
+
+```
 $ npm start
 ```

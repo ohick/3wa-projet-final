@@ -11,7 +11,7 @@ function DeletePlaylist() {
     const deleteData = async () => deletePlaylist(dispatch, id);
     deleteData();
     return navigate('/my-playlists');
-  }, []);
+  }, [id, dispatch, navigate]);
 
   return null;
 }

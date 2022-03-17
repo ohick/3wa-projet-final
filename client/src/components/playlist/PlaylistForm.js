@@ -49,11 +49,11 @@ function PlaylistForm({ editContent = null, onSubmit }) {
 
   return displayConfirmation ? <ConfirmPlaylist onSubmit={handleSubmit} title="Finalize your playlist creation" content={editContent} /> : (
     <Grid container spacing={1}>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         <Search sendResults={(res) => getResults(res)} />
       </Grid>
       {displaySelection && (
-        <Grid item xs={8}>
+        <Grid item xs={12} md={8}>
           <Box
             noValidate
             sx={{

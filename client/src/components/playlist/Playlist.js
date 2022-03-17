@@ -23,14 +23,14 @@ function Playlist() {
       await getPlaylistById(dispatch, id);
     };
     return fetchData();
-  }, []);
+  }, [authState.id, dispatch, id, navigate]);
 
   useEffect(() => {
     const playlist = spotifyState.find((p) => p.playlist.id === id.toString());
     if (playlist?.tracks) {
       setData(playlist);
     }
-  }, [spotifyState]);
+  }, [spotifyState, id]);
 
   return authState.id && (Object.keys(data).length ? (
     <>
