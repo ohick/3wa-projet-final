@@ -1,0 +1,26 @@
+{
+  "name": "projet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "cd server && npm start",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "postinstall": "(cd client && npm install) && (cd server && npm install)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohick/3wa-projet-final.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ohick/3wa-projet-final/issues"
+  },
+  "homepage": "https://github.com/ohick/3wa-projet-final#readme",
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  }
+}

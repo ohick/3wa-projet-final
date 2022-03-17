@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "tap \"test/**/*.test.js\"",
-    "start": "nodemon server.js",
-    "dev": "fastify start server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
