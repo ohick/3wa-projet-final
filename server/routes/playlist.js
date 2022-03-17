@@ -24,10 +24,6 @@ const spotifySearchOpts = {
   handler: generalSearch,
 };
 
-const genresSearchOpts = {
-  handler: genreSearch,
-};
-
 const getPlaylistsOpts = {
   schema: getPlaylistsSchema,
   handler: getPlaylists,
@@ -41,7 +37,6 @@ const getPlaylistByIdOpts = {
 
 const addPlaylistOpts = {
   schema: addPlaylistSchema,
-  prehandler: getToken,
   handler: addPlaylist,
 };
 
@@ -66,7 +61,6 @@ module.exports = async (fastify, options, done) => {
   fastify.addHook('preHandler', getToken);
 
   fastify.get('/search', spotifySearchOpts);
-  fastify.get('/getGenres', genresSearchOpts);
   fastify.get('/playlists', getPlaylistsOpts);
   fastify.get('/playlist/:id', getPlaylistByIdOpts);
   fastify.put('/playlist/:id', updatePlaylistOpts);
