@@ -44,7 +44,7 @@ function Playlist() {
         <Grid item xs={12}>
           <Grid container spacing={4}>
             {data.tracks.map((track) => (
-              <Grid key={track.id} item>
+              <Grid key={track.trackId} item>
                 <Track item={track} />
               </Grid>
             ))}

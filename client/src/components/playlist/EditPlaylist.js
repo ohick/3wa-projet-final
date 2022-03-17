@@ -2,40 +2,47 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import Typography from '@mui/material/Typography';
-import axiosWrapper from '../../lib/axiosWrapper';
 import PlaylistForm from './PlaylistForm';
+
+import { useAuthState } from '../../context/auth';
+import {
+  useSpotifyState, useSpotifyDispatch, updatePlaylist, getPlaylistById,
+} from '../../context/spotify';
 
 function EditPlaylist() {
   const navigate = useNavigate();
+  const dispatch = useSpotifyDispatch();
+  const authState = useAuthState();
   const [data, setData] = useState({});
   const { id } = useParams();
+  const spotifyState = useSpotifyState();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const playlist = await axiosWrapper({
-        method: 'GET',
-        url: `/playlist/${id}`,
-      });
+    const playlist = spotifyState.find((p) => p.playlist.id === id.toString());
+    if (playlist?.tracks) {
+      setData(playlist);
+    }
+  }, [spotifyState]);
 
-      setData(playlist.data);
+  useEffect(() => {
+    if (!authState.id) return navigate('/login');
+    const fetchData = async () => {
+      await getPlaylistById(dispatch, id);
     };
-    fetchData();
+    return fetchData();
   }, []);
 
   const onSubmit = async (formData) => {
-    await axiosWrapper({
-      method: 'PUT',
-      url: `/playlist/${id}`,
-      data: {
-        id,
-        name: formData.playlist.name,
-        description: formData.playlist.description,
-        tracks: formData.tracks.map((track) => ({
-          trackId: track.trackId,
-          spotify_id: track.track.id,
-        })),
-      },
-    });
+    const payload = {
+      id,
+      name: formData.playlist.name,
+      description: formData.playlist.description,
+      tracks: formData.tracks.map((track) => ({
+        trackId: track.trackId,
+        spotify_id: track.track.id,
+      })),
+    };
+    updatePlaylist(dispatch, payload);
     return navigate('/my-playlists');
   };
 

@@ -17,12 +17,7 @@ export const SpotifyReducer = (state, action) => {
     case 'ADD_PLAYLIST':
       return [...state, { playlist: payload }];
     case 'UPDATE_PLAYLIST':
-      return state.map((playlist) => {
-        if (playlist.id === payload.id) {
-          return payload;
-        }
-        return playlist;
-      });
+      return state;
     case 'DELETE_PLAYLIST':
       return state.filter((playlist) => playlist.id !== payload.id);
     default:

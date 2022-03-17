@@ -35,18 +35,19 @@ async function addPlaylist(dispatch, payload) {
 }
 
 async function updatePlaylist(dispatch, payload) {
-  const { data } = await axiosWrapper({
-    method: 'GET',
+  await axiosWrapper({
+    method: 'PUT',
     url: `/playlist/${payload.id}`,
+    data: payload,
   });
 
-  dispatch({ type: 'UPDATE_PLAYLIST', payload: data });
+  dispatch({ type: 'UPDATE_PLAYLIST' });
 }
 
 async function deletePlaylist(dispatch, payload) {
-  const { data } = axiosWrapper({
+  const { data } = await axiosWrapper({
     method: 'DELETE',
-    url: `/playlist/${payload.id}`,
+    url: `/playlist/${payload}`,
   });
   dispatch({ type: 'DELETE_PLAYLIST', payload: data });
 }

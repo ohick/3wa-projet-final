@@ -1,16 +1,14 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import axiosWrapper from '../../lib/axiosWrapper';
+import { useSpotifyDispatch, deletePlaylist } from '../../context/spotify';
 
 function DeletePlaylist() {
   const navigate = useNavigate();
+  const dispatch = useSpotifyDispatch();
   const { id } = useParams();
   useEffect(() => {
-    const deleteData = async () => axiosWrapper({
-      method: 'DELETE',
-      url: `/playlist/${id}`,
-    });
+    const deleteData = async () => deletePlaylist(dispatch, id);
     deleteData();
     return navigate('/my-playlists');
   }, []);
