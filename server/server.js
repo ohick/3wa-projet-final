@@ -34,6 +34,9 @@ const config = {
   spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET,
   redirectUri: process.env.REDIRECT_URI,
   secret: process.env.SECRET,
+  dbName: process.env.DB_NAME,
+  dbUser: process.env.DB_USER,
+  dbPass: process.env.DB_PASSWORD,
 };
 
 app.register(appService, config);
